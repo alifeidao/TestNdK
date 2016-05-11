@@ -10,6 +10,11 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        ndk{
+            moduleName "two"			//生成的so名字
+            ldLibs "log", "z", "m"	//添加依赖库文件，因为有log打印等
+            abiFilters "armeabi", "armeabi-v7a", "x86"	//输出指定三种abi体系结构下的so库
+        }
     }
     buildTypes {
         release {
@@ -17,10 +22,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
 
+
+
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
 }
+
